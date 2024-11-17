@@ -15,7 +15,7 @@ function reproducir(){
   if (i){
     
     video.style.contentVisibility="visible";
-    video.volume = 1;
+    video.volume = 0.2;
     video.play();
     boton.value = "Pause";
     
