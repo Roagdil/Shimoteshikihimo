@@ -39,7 +39,7 @@ function cambiarImagen(){
   peticion.send();
   peticion.addEventListener("load",()=>{
   if (peticion.status != 200) {
-    lista[index]= "";
+    console.log(peticion.status)
   }
   })
   
