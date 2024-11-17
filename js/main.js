@@ -31,7 +31,18 @@ function reproducir(){
   
 }
 
+
+
 function cambiarImagen(){
+  peticion = new XMLHttpRequest();
+  peticion.open("GET",lista[index]);
+  peticion.send();
+  peticion.addEventListener("load",()=>{
+  if (peticion.status != 200) {
+    lista[index]= "";
+  }
+  })
+  
   document.getElementsByClassName("imagenes")[0].src= lista[index];
   index = index == 15 ? 0 : index +1;
   
