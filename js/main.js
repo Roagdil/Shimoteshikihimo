@@ -15,12 +15,12 @@ url = ["./img/1.png","./img/2.png","./img/3.png","./img/4.png","./img/5.png","./
 for(v = 0; v < url.length; v++){
   peticion = new XMLHttpRequest();
   peticion.open("GET",url[v]);
-  peticion.addEventListener("load",()=>{
-  if (peticion.status != 200) {
-    console.log(peticion.status)
-  }
-  })
-}
+  peticion.responseType= "arraybuffer";
+  peticion.addEventListener("onload",()=>{
+   let blob = new Blob([peticion.response]);
+   let urls = URL.createObjectURL(blob) ;
+   url[v]= urls;
+})}
 
 function reproducir(){
    
