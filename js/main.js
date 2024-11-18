@@ -9,7 +9,7 @@ video = document.getElementsByTagName("video")[0];
 boton = document.getElementsByClassName("boton")[0];
 boton.value = "Play";
 boton.addEventListener("click",()=>reproducir())
-lista = ["./img/1.png","./img/2.png","./img/3.png","./img/4.png","./img/5.png","./img/6.png","./img/7.png","./img/8.png","./img/9.png","./img/10.png","./img/11.png","./img/12.png","./img/13.png","./img/14.png","./img/15.png","./img/16.png"];
+url = ["./img/1.png","./img/2.png","./img/3.png","./img/4.png","./img/5.png","./img/6.png","./img/7.png","./img/8.png","./img/9.png","./img/10.png","./img/11.png","./img/12.png","./img/13.png","./img/14.png","./img/15.png","./img/16.png"];
 function reproducir(){
    
   if (i){
@@ -35,7 +35,7 @@ function reproducir(){
 
 function cambiarImagen(){
   peticion = new XMLHttpRequest();
-  peticion.open("GET",lista[index]);
+  peticion.open("GET",url[index]);
   peticion.send();
   peticion.addEventListener("load",()=>{
   if (peticion.status != 200) {
@@ -43,7 +43,7 @@ function cambiarImagen(){
   }
   })
   
-  document.getElementsByClassName("imagenes")[0].src= lista[index];
+  document.getElementsByClassName("imagenes")[0].src= url[index];
   index = index == 15 ? 0 : index +1;
   
 
