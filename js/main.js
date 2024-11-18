@@ -17,13 +17,12 @@ for(v = 0; v < lista.length; v++){
   peticion.open("GET",lista[v]);
   peticion.responseType= "arraybuffer";
   peticion.send();
-  peticion.addEventListener("onload",(e)=>{
-   let blob = new Blob([e.response]);
-   if (e.stats == 200){
-   let url = URL.createObjectURL(blob) ;
-   urls[v] = url;
-   }
-  })
+  
+  peticion.onload = (e)=>{
+    let blob = new Blob([peticion.response]);
+    let url = URL.createObjectURL(blob);
+    urls[v]=url;
+  }
 }
 
 function reproducir(){
