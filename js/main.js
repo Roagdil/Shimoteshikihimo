@@ -11,21 +11,17 @@ boton.value = "Play";
 boton.addEventListener("click",()=>reproducir())
 imagenes = document.getElementsByClassName("imagenes")[0]
 lista = ["./img/1.png","./img/2.png","./img/3.png","./img/4.png","./img/5.png","./img/6.png","./img/7.png","./img/8.png","./img/9.png","./img/10.png","./img/11.png","./img/12.png","./img/13.png","./img/14.png","./img/15.png","./img/16.png"];
-urls= [];
+video.addEventListener("ended",()=>clearInterval(t));
 for(v = 0; v < lista.length; v++){
-  peticion = new XMLHttpRequest();
-  peticion.open("GET",lista[v]);
-  peticion.responseType= "arraybuffer";
-  
-  
-  peticion.load = (e)=>{
-    let blob = new Blob([peticion.response]);
-    let url = URL.createObjectURL(blob);
-    urls[v]=url;
-
-  }
-  console.log(peticion.status);
-  peticion.send();
+  fetch(lista[v])
+  .then((response) => {
+    console.log("response.status =", response.status); // response.status = 200
+    return response.blob();
+  })
+  .then((myBlob) => {
+    let objectURL = URL.createObjectURL(myBlob);
+    lista[v] = objectURL;
+  });
 }
 
 function reproducir(){
@@ -55,7 +51,7 @@ function reproducir(){
 function cambiarImagen(){
   
   
-  imagenes.src= urls[index];
+  imagenes.src= lista[index];
   index = index == 15 ? 0 : index +1;
   
 
