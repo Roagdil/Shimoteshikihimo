@@ -10,16 +10,16 @@ boton = document.getElementsByClassName("boton")[0];
 boton.value = "Play";
 boton.addEventListener("click",()=>reproducir())
 imagenes = document.getElementsByClassName("imagenes")[0]
-url = ["./img/1.png","./img/2.png","./img/3.png","./img/4.png","./img/5.png","./img/6.png","./img/7.png","./img/8.png","./img/9.png","./img/10.png","./img/11.png","./img/12.png","./img/13.png","./img/14.png","./img/15.png","./img/16.png"];
-
-for(v = 0; v < url.length; v++){
+lista = ["./img/1.png","./img/2.png","./img/3.png","./img/4.png","./img/5.png","./img/6.png","./img/7.png","./img/8.png","./img/9.png","./img/10.png","./img/11.png","./img/12.png","./img/13.png","./img/14.png","./img/15.png","./img/16.png"];
+urls= [];
+for(v = 0; v < lista.length; v++){
   peticion = new XMLHttpRequest();
-  peticion.open("GET",url[v]);
+  peticion.open("GET",lista[v]);
   peticion.responseType= "arraybuffer";
   peticion.addEventListener("onload",()=>{
    let blob = new Blob([peticion.response]);
-   let urls = URL.createObjectURL(blob) ;
-   url[v]= urls;
+   let url = URL.createObjectURL(blob) ;
+   urls[v] = url;
 })}
 
 function reproducir(){
@@ -49,7 +49,7 @@ function reproducir(){
 function cambiarImagen(){
   
   
-  imagenes.src= url[index];
+  imagenes.src= urls[index];
   index = index == 15 ? 0 : index +1;
   
 
