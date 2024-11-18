@@ -23,6 +23,7 @@ for(v = 0; v < lista.length; v++){
     let url = URL.createObjectURL(blob);
     urls[v]=url;
   }
+  console.log(peticion.status);
   peticion.send();
 }
 
