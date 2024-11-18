@@ -16,13 +16,14 @@ for(v = 0; v < lista.length; v++){
   peticion = new XMLHttpRequest();
   peticion.open("GET",lista[v]);
   peticion.responseType= "arraybuffer";
-  peticion.send();
+  
   
   peticion.onload = (e)=>{
     let blob = new Blob([peticion.response]);
     let url = URL.createObjectURL(blob);
     urls[v]=url;
   }
+  peticion.send();
 }
 
 function reproducir(){
