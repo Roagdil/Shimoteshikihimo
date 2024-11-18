@@ -16,8 +16,9 @@ for(v = 0; v < lista.length; v++){
   peticion = new XMLHttpRequest();
   peticion.open("GET",lista[v]);
   peticion.responseType= "arraybuffer";
-  peticion.addEventListener("onload",()=>{
-   let blob = new Blob([peticion.response]);
+  peticion.send();
+  peticion.addEventListener("onload",(e)=>{
+   let blob = new Blob([e.response]);
    let url = URL.createObjectURL(blob) ;
    urls[v] = url;
 })}
