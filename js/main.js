@@ -18,10 +18,11 @@ for(v = 0; v < lista.length; v++){
   peticion.responseType= "arraybuffer";
   
   
-  peticion.onload = (e)=>{
+  peticion.load = (e)=>{
     let blob = new Blob([peticion.response]);
     let url = URL.createObjectURL(blob);
     urls[v]=url;
+
   }
   console.log(peticion.status);
   peticion.send();
