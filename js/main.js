@@ -19,9 +19,12 @@ for(v = 0; v < lista.length; v++){
   peticion.send();
   peticion.addEventListener("onload",(e)=>{
    let blob = new Blob([e.response]);
+   if (e.stats == 200){
    let url = URL.createObjectURL(blob) ;
    urls[v] = url;
-})}
+   }
+  })
+}
 
 function reproducir(){
    
